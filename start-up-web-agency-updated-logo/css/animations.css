@@ -1,0 +1,169 @@
+/* ==========================================================================
+   START-UP WEB AGENCY — V3 MOTION ARCHITECTURE & KEYFRAMES
+   Pure CSS3 — Coordinated choreography, SVG path drawing, mask reveals
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. ENTRANCE REVEAL KEYFRAMES (V3 Section 08.4 & 09.2)
+   -------------------------------------------------------------------------- */
+@keyframes headlineMaskReveal {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes panelAssemble {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes svgStrokeDraw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes organicMorphPulse {
+  0%, 100% {
+    border-radius: 44% 56% 40% 60% / 54% 42% 58% 46%;
+    transform: rotate(-1.5deg) scale(1);
+  }
+  50% {
+    border-radius: 52% 48% 58% 42% / 46% 56% 44% 54%;
+    transform: rotate(0.5deg) scale(1.02);
+  }
+}
+
+@keyframes panelFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   02. APPLIED CHOREOGRAPHY CLASSES
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur-reveal) var(--ease-reveal),
+              transform var(--dur-reveal) var(--ease-reveal);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 80ms; }
+.stagger-2 { transition-delay: 160ms; }
+.stagger-3 { transition-delay: 240ms; }
+.stagger-4 { transition-delay: 320ms; }
+
+/* Hero Entrance Sequence */
+.hero-title-reveal {
+  animation: headlineMaskReveal var(--dur-signature) var(--ease-signature) forwards;
+}
+
+.hero-panel-reveal {
+  animation: panelAssemble 850ms var(--ease-signature) 150ms forwards;
+  opacity: 0;
+}
+
+/* SVG Line Drawing Path */
+.draw-svg-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: svgStrokeDraw 1.4s var(--ease-signature) 200ms forwards;
+}
+
+/* Subtle Organic Contour Animation */
+.hero-organic-backdrop.animated {
+  animation: organicMorphPulse 14s ease-in-out infinite;
+}
+
+/* Subtle Live Dot Pulse */
+.live-pulse {
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   03. REDUCED MOTION OVERRIDES (V3 Section 09.5)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-title-reveal,
+  .hero-panel-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .draw-svg-path {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+
+  .hero-organic-backdrop.animated {
+    animation: none !important;
+  }
+
+  .live-pulse {
+    animation: none !important;
+  }
+}

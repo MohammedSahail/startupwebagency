@@ -1,0 +1,285 @@
+/* ==========================================================================
+   START-UP WEB AGENCY — V3 DESIGN SYSTEM & CORE FOUNDATION
+   Technology Lock: Pure CSS3 (No preprocessors, zero frameworks)
+   ========================================================================== */
+
+:root {
+  /* Brand Color Tokens (V3 Specification 06.2) */
+  --color-primary-blue: #1967D2;
+  --color-bright-blue:  #4285F4;
+  --color-soft-blue:    #E8F0FE;
+  --color-deep-ink:     #202331;
+  --color-deep-navy:    #172B4D;
+  --color-white:        #FFFFFF;
+  --color-soft-neutral: #F6F8FC;
+  --color-muted-text:   #62748A;
+  --color-violet-accent:#7566E8;
+  --color-warm-accent:  #F1A45B;
+
+  /* UI Surface & Border Tokens */
+  --surface-canvas:      var(--color-white);
+  --surface-alt:         var(--color-soft-neutral);
+  --surface-card:        var(--color-white);
+  --surface-workspace:   var(--color-deep-ink);
+  --surface-subtle:      #EDF2F9;
+  --border-subtle:       rgba(23, 43, 77, 0.08);
+  --border-medium:       rgba(23, 43, 77, 0.14);
+  --border-focus:        var(--color-bright-blue);
+  --border-workspace:    rgba(255, 255, 255, 0.1);
+  --border-workspace-active: rgba(66, 133, 244, 0.5);
+
+  /* Typography Stack */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Organic Silhouette Tokens (V3 Specification 06.1) */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-pill: 9999px;
+  --radius-organic-1: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  --radius-organic-2: 64% 36% 27% 73% / 55% 58% 42% 45%;
+  --radius-cut-corner: 20px 4px 20px 20px;
+
+  /* Shadows with Organic Color Cast */
+  --shadow-xs: 0 1px 3px rgba(23, 43, 77, 0.06);
+  --shadow-sm: 0 4px 12px rgba(23, 43, 77, 0.06);
+  --shadow-md: 0 10px 28px -4px rgba(23, 43, 77, 0.09), 0 2px 8px rgba(25, 103, 210, 0.04);
+  --shadow-lg: 0 20px 40px -8px rgba(23, 43, 77, 0.12), 0 6px 16px rgba(25, 103, 210, 0.06);
+  --shadow-workspace: 0 24px 50px -10px rgba(10, 14, 25, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  /* Spacing Scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 18px;
+  --space-lg: 28px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+
+  /* Layout */
+  --container-max: 1240px;
+  --container-narrow: 880px;
+  --header-height: 72px;
+
+  /* Motion Timing & Easing System (V3 Specification 09.3) */
+  --dur-micro: 140ms;
+  --dur-ui: 240ms;
+  --dur-panel: 340ms;
+  --dur-reveal: 600ms;
+  --dur-signature: 950ms;
+
+  --ease-micro: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-panel: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-signature: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--surface-canvas);
+  color: var(--color-deep-navy);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-deep-navy);
+  background-color: var(--surface-canvas);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle Organic Noise Canvas Overlay (non-blocking) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(25, 103, 210, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.7;
+}
+
+/* Accessible Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-deep-ink);
+  color: var(--color-white);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  z-index: 10000;
+  text-decoration: none;
+  transition: top var(--dur-ui) var(--ease-ui);
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--color-bright-blue);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-deep-navy);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  letter-spacing: -0.02em;
+}
+
+h4 {
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--color-muted-text);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+p.lead {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  color: var(--color-deep-navy);
+  font-weight: 450;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-primary-blue);
+  text-decoration: none;
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+a:hover {
+  color: var(--color-bright-blue);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-bright-blue);
+  outline-offset: 3px;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Utility Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+}
+
+/* Section Spacing & Structure */
+section {
+  position: relative;
+  padding-top: clamp(3.5rem, 7vw, 6.5rem);
+  padding-bottom: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.section-head {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.section-head.text-center {
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-blue);
+  background-color: var(--color-soft-blue);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1rem;
+}
+
+.eyebrow.eyebrow-dark {
+  background-color: rgba(66, 133, 244, 0.15);
+  color: #93B8F8;
+  border: 1px solid rgba(66, 133, 244, 0.3);
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-bright-blue);
+  display: inline-block;
+}
+
+/* Organic Motif Decorative SVGs */
+.organic-contour-wrap {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.organic-shape-stamp {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-organic-1);
+  background: var(--color-soft-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-blue);
+}

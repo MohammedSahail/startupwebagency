@@ -1,0 +1,244 @@
+/* ==========================================================================
+   START-UP WEB AGENCY — V3 RESPONSIVE ADAPTATIONS
+   Tested at 1440px, 1280px, 1024px, 768px, 430px, 390px, 360px
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Desktop Narrow / Small Laptop (<= 1280px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1280px) {
+  :root {
+    --container-max: 1120px;
+  }
+
+  .workspace-app-shell {
+    grid-template-columns: 56px 190px 1fr 240px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet Landscape (<= 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .hero-copy {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-tagline-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-trust-strip {
+    justify-content: center;
+  }
+
+  /* Discord-inspired workspace reflows inspector into bottom tray */
+  .workspace-app-shell {
+    grid-template-columns: 56px 200px 1fr;
+  }
+  .workspace-inspector {
+    display: none; /* Collapses on medium tablet to keep stage roomy */
+  }
+
+  .case-study-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-stepper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet Portrait & Small Tablet (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  /* Studio Workspace transforms to horizontal tabs + main panel */
+  .workspace-app-shell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workspace-icon-rail {
+    flex-direction: row;
+    width: 100%;
+    padding: 10px 14px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rail-divider {
+    width: 2px;
+    height: 24px;
+  }
+
+  .workspace-sidebar {
+    padding: 10px 14px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .channel-list {
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .channel-btn {
+    white-space: nowrap;
+    padding: 6px 12px;
+  }
+
+  .leadership-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-stage-body {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-rail {
+    flex-direction: row;
+    width: 100%;
+    padding: 8px 12px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+  }
+
+  .workflow-stepper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Viewports (<= 430px, 390px, 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 430px) {
+  :root {
+    --space-md: 14px;
+    --space-lg: 20px;
+    --space-xl: 32px;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-trust-strip {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .stage-tab-group {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .stage-tab-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 6px 8px;
+    font-size: 0.78rem;
+  }
+
+  .case-study-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-stepper {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-lg {
+    padding: 12px 20px;
+    font-size: 0.98rem;
+  }
+
+  /* Safe interactive touch target sizes */
+  button, input, select, textarea, .nav-link, .channel-btn, .stage-tab-btn {
+    min-height: 44px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Smallest Mobile Viewport (<= 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.62rem;
+  }
+}
